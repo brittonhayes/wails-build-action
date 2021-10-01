@@ -1,15 +1,16 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: "Wails Build"
+description: "Cross-compile wails applications"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  path:
+    description: "The path within the repository to your wails project"
+    required: false
   args:
-    - ${{ inputs.who-to-greet }}
+    description: "wails build arguments"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.args }}
